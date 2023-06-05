@@ -81,15 +81,16 @@ class DataBase {
     //查詢公車路線圖片
     static findBusImage(RouteName) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(`DB findBusImage你輸入的公車名稱是${RouteName}`);
+            //console.log(`DB findBusImage你輸入的公車名稱是${RouteName}`)
             try {
                 let imageSrc = yield BusImageModel_1.BusImageModel.findOne({ RouteName: RouteName }).exec();
-                console.log(`你拿到了${imageSrc}`);
+                //console.log(`Database findBusImage try 你拿到了 ${imageSrc}`)
+                return imageSrc === null || imageSrc === void 0 ? void 0 : imageSrc.RouteMapImageUrl;
             }
             catch (e) {
-                //console.log(e);
+                console.log(`Database findBusImage Error: ${e}`);
+                //console.log(`他媽的不要亂輸入公車, 找不到地圖位置`);
                 return null;
-                console.log(`他媽的不要亂輸入公車, 找不到地圖位置`);
             }
         });
     }

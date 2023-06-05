@@ -36,14 +36,14 @@
             <script>
                 alert('創建帳號失敗，請確認你所輸入的帳號密碼');
             </script>
-            <% } %>
-                <% if( user !=null && user !="1" ) { %>
-                    <script>
-                        alert('帳號創建成功, 請回到登入頁登入');
-                    </script>
-                    <% } %>
-                        <input type="submit" value="提交">
-                        </br>
+        <% } %>
+        <% if( user !=null && user !="1" ) { %>
+            <script>
+                    alert('帳號創建成功, 請回到登入頁登入');
+            </script>
+        <% } %>
+            <input type="submit" value="提交">
+            </br>
     </form>
     <form action="/index" method="GET">
         <br>

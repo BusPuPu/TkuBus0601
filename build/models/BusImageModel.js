@@ -29,4 +29,4 @@ const BusImageSchema = new mongoose_1.Schema({
     RouteName: { type: String, required: true },
     RouteMapImageUrl: { type: String, required: false },
 });
-exports.BusImageModel = mongoose_1.default.model("BusRouteImage", BusImageSchema);
+exports.BusImageModel = mongoose_1.default.model("busrouteimage", BusImageSchema);
