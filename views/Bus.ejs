@@ -12,6 +12,7 @@
 <body style="background-color:rgb(232, 209, 197);">
     <div>
         <script>
+            let GlobalData
             $(function () {
                 GetAuthorizationHeader();
                 GetApiResponse();
@@ -51,6 +52,7 @@
                         .then(data => {
                             $('#apireponse').text(JSON.stringify(data));
                             //console.log('Data', data);
+                            GlobalData = data
                             for (let i = 0; i < data.length; i++) {
                                 try {
                                     // console.log(`${data[i].EstimateTime}`)
@@ -61,22 +63,26 @@
 
                             }
                         })
-                        .then(data => {
-                            // 選擇需要的欄位
-                            const filteredData = data.map(entry => ({
-                                stopName: entry.StopName.Zh_tw,
-                                direction: entry.Direction,
-                                estimateTime: entry.EstimateTime
-                            }));
+                        .then(()=> {
+                            console.log('GlobalData', GlobalData);
+                            const data22 = GlobalData
+                            const listElement = document.querySelector('#bus-list');
 
-                            // 遍歷新的陣列，將資料添加到表格中
-                            const tableBody = $('#table-body'); // 在 HTML 中設置一個空表格
-                            for (let i = 0; i < filteredData.length; i++) {
-                                const row = $('<tr>'); // 創建一行表格
-                                row.append($('<td>').text(filteredData[i].stopName));
-                                row.append($('<td>').text(filteredData[i].direction));
-                                row.append($('<td>').text(filteredData[i].estimateTime));
-                                tableBody.append(row); // 添加這一行到表格中
+                            // 遍歷陣列中的每個物件
+                            for (let i = 0; i < data22.length; i++) {
+                                const item = data22[i];
+                                const ROUTENAME = item.StopName.Zh_tw;
+                                const DIRECTION = item.Direction;
+                                const ESTIMATETIME = item.EstimateTime;
+
+                                // 創建新的列表項目元素
+                                const listItem = document.createElement('li');
+                                const textNode = document.createTextNode(`<strong>站牌名稱:</strong> ${ROUTENAME} <br><strong>剩餘時間:</strong> ${ESTIMATETIME}秒<br><strong>去返程:</strong> ${DIRECTION}<br>`);
+                                //listItem.appendChild(textNode);
+                                listItem.innerHTML = textNode.textContent;
+
+                                // 將列表項目元素添加到 HTML 列表中
+                                listElement.appendChild(listItem);
                             }
                         })
                         .catch(error => {
@@ -84,29 +90,43 @@
                         });
                 }
             }
+            
         </script>
+
+        
         <h3>取得憑證資料:</h3>
         <div id="accesstoken" class="align-text-bottom">
         </div>
         <h3>api 資料:</h3>
         <div id="apireponse" class="align-text-bottom">
-        </div>
+        </div> 
+   
     </div>
 
-    <h1>公車即時到站資訊</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>站名</th>
-                <th>方向</th>
-                <th>到站時間</th>
-            </tr>
-        </thead>
-        <tbody id="table-body">
-            <!-- 在這裡插入表格中的每行資料 -->
-        </tbody>
-    </table>
+    <!-- 公車表塞在這裡 -->
+    <ul id="bus-list"></ul>
+    <!-- 
+    <script>
+        const data22 = GlobalData
+        const listElement = document.querySelector('#bus-list');
 
+        // 遍歷陣列中的每個物件
+        for (let i = 0; i < data22.length; i++) {
+            const item = data22[i];
+            const ROUTENAME = item.StopName.Zh_tw;
+            const DIRECTION = item.Direction;
+            const ESTIMATETIME = item.EstimateTime;
+
+            // 創建新的列表項目元素
+            const listItem = document.createElement('li');
+            const textNode = document.createTextNode(`<strong>站牌名稱:</strong> ${ROUTENAME} <br><strong>剩餘時間:</strong> ${ESTIMATETIME}秒<br><strong>去返程:</strong> ${DIRECTION}<br>`);
+            //listItem.appendChild(textNode);
+            listItem.innerHTML = textNode.textContent;
+
+            // 將列表項目元素添加到 HTML 列表中
+            listElement.appendChild(listItem);
+        }
+    </script> -->
 
     <!-- <body style="background-color:rgb(232, 209, 197);"></body> -->
     <font style="text-shadow:0px 0px 15px #82cff0da;">
