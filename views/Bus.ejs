@@ -10,6 +10,12 @@
 </head>
 
 <body style="background-color:rgb(232, 209, 197);">
+    <style>
+        li {
+            margin-bottom: 1em;
+            /* 設置底部邊距為 1 個字母高度 */
+        }
+    </style>
     <div>
         <script>
             let GlobalData
@@ -63,7 +69,7 @@
 
                             }
                         })
-                        .then(()=> {
+                        .then(() => {
                             console.log('GlobalData', GlobalData);
                             const data22 = GlobalData
                             const listElement = document.querySelector('#bus-list');
@@ -90,21 +96,20 @@
                         });
                 }
             }
-            
+
         </script>
 
-        
+
         <h3>取得憑證資料:</h3>
         <div id="accesstoken" class="align-text-bottom">
         </div>
         <h3>api 資料:</h3>
         <div id="apireponse" class="align-text-bottom">
-        </div> 
-   
+        </div>
+
     </div>
 
-    <!-- 公車表塞在這裡 -->
-    <ul id="bus-list"></ul>
+
     <!-- 
     <script>
         const data22 = GlobalData
@@ -143,6 +148,9 @@
             <!-- 插入照片 -->
             <!-- <img class="photo" src="https://ebus.gov.taipei/File/Get/bfe76479-fc9d-49cb-8507-0017457d25d3?v=638001480132362513" alt="" width="60%" height="60%"> -->
             <%- OutImageSrc%>
+
+                <!-- 公車表塞在這裡 -->
+                <ul id="bus-list"></ul>
         </div>
         <form action="/index" method="GET">
             <br>

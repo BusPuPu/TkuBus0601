@@ -19,6 +19,7 @@ let isFirst_index_Request:boolean;
 
 //http://localhost:3000/index
 //app.use(express.static('public'));//设置静態文件目录
+
 app.set("view engine", "ejs")
 
 //主頁
@@ -47,8 +48,8 @@ app.get('/findBus', async (req: any, res: any) => {
             else{ //最終成功的道路在這裡
                 let imageSrc = await DataBase.findBusImage(<string>busName)
                 let OutImageSrc = `<img class="photo" src="${imageSrc}" alt="" width="60%" height="60%">`
-                console.log(`imageSrc  = ${imageSrc}`)
-                console.log(`OutimageSrc  = ${OutImageSrc}`)
+                //console.log(`imageSrc  = ${imageSrc}`)
+                //console.log(`OutimageSrc  = ${OutImageSrc}`)
                 data1RouteName = data1.RouteName;
                 let endpoint: string = `https://ptx.transportdata.tw/MOTC/v2/Bus/EstimatedTimeOfArrival/City/NewTaipei/${data1RouteName}?%24top=100&%24format=JSON`;
                 res.render("Bus", { busName, data1, OutImageSrc});
