@@ -35,12 +35,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>這是他媽的巴士首頁</title>
+    <title>歡迎來到淡淡優商--淡水區巴士查詢系統</title>
 </head>
 
 <body>
     <h1>TKU BUS</h1>
     <img scr="../pic/head.png">
+    <div id="LoginStatus"></div>
+    <% if(UserLoginSign == true){  %>
+        <script>
+            var LoginStatusElement = document.getElementById('LoginStatus');
+            LoginStatus.textContent = '已登入';
+        </script>
+    <% }else{ %>
+        <script>
+            LoginStatus.style.display = 'none';
+        </script>
+    <% } %>
+
     <form action="/findBus" method="GET">
         <br>
         <b><label>請輸入欲查詢的公車名稱:</label></b>

@@ -24,6 +24,7 @@ let isFirsUserLogintRequest;
 let isFirstUserCreateRequest;
 let isFirst_FindBus_Request;
 let isFirst_index_Request;
+let UserLoginSign = false;
 //http://localhost:3000/index
 //app.use(express.static('public'));//设置静態文件目录
 app.set("view engine", "ejs");
@@ -33,7 +34,7 @@ app.get('/index', (req, res) => {
     isFirstUserCreateRequest = true; /** 是否為第一次訪問\userlogin\usercreate */
     isFirst_FindBus_Request = true;
     //isFirst_index_Request = true;
-    res.render("index.ejs");
+    res.render("index.ejs", { UserLoginSign });
 });
 let data1;
 app.get('/findBus', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -74,7 +75,7 @@ app.get('/userlogin', (req, res) => __awaiter(void 0, void 0, void 0, function* 
     else {
         let { UserName, UserPassword } = req.query;
         DataBase_1.DataBase.findUser(UserName, UserPassword).then(UserInfo => {
-            (UserInfo == null) ? (console.log(`查無此帳號，請確認您的帳密`), res.render("userlogin", { UserInfo })) : {};
+            (UserInfo == null) ? (console.log(`查無此帳號，請確認您的帳密`), res.render("userlogin", { UserInfo })) : (UserLoginSign = true, res.render("index", { UserLoginSign }));
         }).catch(error => {
             console.log(`findUser Error: ${error}`);
         });

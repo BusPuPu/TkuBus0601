@@ -17,6 +17,8 @@ let isFirstUserCreateRequest:boolean;
 let isFirst_FindBus_Request:boolean;
 let isFirst_index_Request:boolean;
 
+let UserLoginSign: boolean= false;
+
 //http://localhost:3000/index
 //app.use(express.static('public'));//设置静態文件目录
 
@@ -29,7 +31,7 @@ app.get('/index',(req:any,res:any)=>{
     isFirst_FindBus_Request = true;
     //isFirst_index_Request = true;
 
-    res.render("index.ejs");
+    res.render("index.ejs", { UserLoginSign });
 });
 
 let data1: any
@@ -76,7 +78,7 @@ app.get('/userlogin',async(req:any, res:any)=>{
     else{
         let { UserName, UserPassword } = req.query
         DataBase.findUser(<string>UserName, <string>UserPassword).then(UserInfo => {
-            (UserInfo == null) ? (console.log(`查無此帳號，請確認您的帳密`), res.render("userlogin", { UserInfo })) : {}
+            (UserInfo == null) ? (console.log(`查無此帳號，請確認您的帳密`), res.render("userlogin", { UserInfo })) : (UserLoginSign = true, res.render("index", { UserLoginSign }))
         }).catch(error => {
             console.log(`findUser Error: ${error}`)
         });

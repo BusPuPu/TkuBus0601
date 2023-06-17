@@ -15,6 +15,10 @@
             margin-bottom: 1em;
             /* 設置底部邊距為 1 個字母高度 */
         }
+
+        .hidden {
+            display: none;
+        }
     </style>
     <div>
         <script>
@@ -39,6 +43,7 @@
                     data: parameter,
                     async: false,
                     success: function (data) {
+                        console.log(`公車api資料調用成功`);
                         $("#accesstoken").text(JSON.stringify(data));
                     },
                     error: function (xhr, textStatus, thrownError) {
@@ -56,7 +61,7 @@
                     })
                         .then(response => response.json())
                         .then(data => {
-                            $('#apireponse').text(JSON.stringify(data));
+                            // $('#apireponse').text(JSON.stringify(data));
                             //console.log('Data', data);
                             GlobalData = data
                             for (let i = 0; i < data.length; i++) {
@@ -99,55 +104,23 @@
 
         </script>
 
-
-        <h3>取得憑證資料:</h3>
-        <div id="accesstoken" class="align-text-bottom">
+        <div id="accesstoken" class="align-text-bottom, hidden">
         </div>
-        <h3>api 資料:</h3>
         <div id="apireponse" class="align-text-bottom">
         </div>
 
     </div>
 
-
-    <!-- 
-    <script>
-        const data22 = GlobalData
-        const listElement = document.querySelector('#bus-list');
-
-        // 遍歷陣列中的每個物件
-        for (let i = 0; i < data22.length; i++) {
-            const item = data22[i];
-            const ROUTENAME = item.StopName.Zh_tw;
-            const DIRECTION = item.Direction;
-            const ESTIMATETIME = item.EstimateTime;
-
-            // 創建新的列表項目元素
-            const listItem = document.createElement('li');
-            const textNode = document.createTextNode(`<strong>站牌名稱:</strong> ${ROUTENAME} <br><strong>剩餘時間:</strong> ${ESTIMATETIME}秒<br><strong>去返程:</strong> ${DIRECTION}<br>`);
-            //listItem.appendChild(textNode);
-            listItem.innerHTML = textNode.textContent;
-
-            // 將列表項目元素添加到 HTML 列表中
-            listElement.appendChild(listItem);
-        }
-    </script> -->
-
     <!-- <body style="background-color:rgb(232, 209, 197);"></body> -->
-    <font style="text-shadow:0px 0px 15px #82cff0da;">
-        <h1>恭喜你現在終於他媽的進來到了這裡</h1>
-    </font>
-    <h3>以下是你提供的資料</h3>
-    <p>你輸入的busName = <%= busName%>
-    </p>
-    <p>公車名字是:<%= data1.RouteName%>
-    </p>
-    <%# 取得公車名稱%>
+    <h1 style="text-shadow:0px 0px 15px #82cff0da;">歡迎您來到公車查詢頁面</h1>
+    <h3>以下是您提供的資料: </h3>
+    <p>公車名字是:<%= data1.RouteName%></p>
+    <%# 取得公車名稱 %>
         <!-- box樣式在哪裡? -->
         <div class="box">
             <!-- 插入照片 -->
             <!-- <img class="photo" src="https://ebus.gov.taipei/File/Get/bfe76479-fc9d-49cb-8507-0017457d25d3?v=638001480132362513" alt="" width="60%" height="60%"> -->
-            <%- OutImageSrc%>
+            <%- OutImageSrc %>
 
                 <!-- 公車表塞在這裡 -->
                 <ul id="bus-list"></ul>
