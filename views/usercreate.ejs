@@ -2,6 +2,30 @@
 <html lang="en">
 
 <head>
+    <style>
+        h1 {
+            color: rgb(109, 46, 70);
+            margin-left: 250px;
+            font-size: 80px;
+        }
+
+        div {
+            float: left;
+            margin-right: 50px;
+        }
+
+        input.r1 {
+            color: white;
+            font-size: 30px;
+            border-radius: 30px;
+            background-color: rgb(109, 46, 70);
+
+        }
+
+        input.r2 {
+            font-size: 30px;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,51 +33,46 @@
 </head>
 
 <body style="background-color:rgb(232, 209, 197);">
+    <div>
+        <h1>TkuBus</h1>
+        <img src="https://img.onl/OdmJse" style="height:600px; margin-left: 65px ;margin-top:-100px ; float: left;" />
+    </div>
     <form action="/userlogin/usercreate" method="GET">
-        <br>
-        <label style="color:brown;">
-            <font style="text-shadow:0px 0px 15px #df163bda;">請輸入要創建的使用者名稱:</p>
-            </font>
-        </label>
-        <input type="text" name="UserName">
-        <br>
-        <br>
-        <label style="color:brown;">
-            <font style="text-shadow:0px 0px 15px #df163bda;">請輸入使用:</p>
-            </font>
-        </label>
-        <input type="text" name="UserPassword">
+        <b>
+            <p style="font-size: 70px; color: rgb(109,46,70);">Welcome~</p>
+        </b>
+        <b>
+            <p style="font-size: 50px; color: rgb(109,46,70);">註冊</p>
+        </b>
+        <p style="font-size: 25px; "><label style="color:rgb(109, 46, 70);"><b>請輸入要創建的使用者名稱:</b></label></p>
+        <input class="r2" type="text" name="UserName">
+        <p style="font-size: 25px; "><label style="color:rgb(109, 46, 70);"><b>請輸入使用者密碼:</b></label></p>
+        <input class="r2" type="text" name="UserPassword">
+        <p style="font-size: 20px; "><label style="color:rgb(109, 46, 70);"><b>已有帳號?</b></label></p>
         </br>
-        <p></p>
-        <p></p>
-        <div class="box">
-            <img class="photo"
-                src="https://o.remove.bg/downloads/c339c606-0a5e-431f-a89d-dfd84e44a864/%E4%B8%8B%E8%BC%89__1_-removebg-preview.png"
-                alt="" width="30%" height="30%">
-        </div>
-        <p></p>
+        <br>
         <% if ( user==null) { %>
             <script>
                 alert('創建帳號失敗，請確認你所輸入的帳號密碼');
             </script>
-        <% } %>
-        <% if( user !=null && user !="1" ) { %>
-            <script>
-                    alert('帳號創建成功, 請回到登入頁登入');
-            </script>
-        <% } %>
-            <input type="submit" value="提交">
-            </br>
+            <% } %>
+                <% if( user !=null && user !="1" ) { %>
+                    <script>
+                        alert('帳號創建成功, 請回到登入頁登入');
+                    </script>
+                    <% } %>
+                        <input class="r1" type="submit" value="提交" style="position: fixed; right: 1px;bottom: 1px ;">
+                        </br>
     </form>
     <form action="/index" method="GET">
         <br>
-        <input id="submit" type="submit" value="返回主頁">
+        <input class="r1" id="submit" type="submit" value="返回主頁" style="position: fixed; left: 230px;bottom: 110px ;">
         </br>
     </form>
 
     <form action="/userlogin" method="GET">
         <br>
-        <input id="submit" type="submit" value="返回登入頁">
+        <input class="r1" id="submit" type="submit" value="返回登入頁" style="position: fixed; left: 370px;bottom: 110px ;">
         </br>
     </form>
 </body>
